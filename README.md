@@ -242,10 +242,15 @@ using System.Collections;
 
 public class Obstacle : MonoBehaviour {
 
+	GameOverMenu gameOverMenu;
+
+	private void Awake(){
+		gameOverMenu = FindObjectOfType<GameOverMenu>();
+	}
+
 	private void OnTriggerEnter(Collider other) {
 		Player player = other.GetComponent<Player>();
 		if(player != null) {
-			GameOverMenu gameOverMenu = FindObjectOfType<GameOverMenu>();
 			gameOverMenu.SetScore(player.Coin);
 			gameOverMenu.Show();
 			Destroy(player.gameObject);
